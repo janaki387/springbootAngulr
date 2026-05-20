@@ -1,0 +1,97 @@
+<form [formGroup]="leadForm" (ngSubmit)="onSubmit()" 
+      class="max-w-lg mx-auto bg-white shadow-md rounded p-6 space-y-4">
+
+  <!-- Full Name -->
+  <div>
+    <label class="block text-gray-700 font-medium">Full Name</label>
+    <input type="text" formControlName="fullName"
+           class="w-full border rounded px-3 py-2 focus:ring focus:ring-blue-300" />
+    <div *ngIf="leadForm.get('fullName')?.invalid && leadForm.get('fullName')?.touched"
+         class="text-red-500 text-sm">
+      Full Name is required.
+    </div>
+  </div>
+
+  <!-- Phone Number -->
+  <div>
+    <label class="block text-gray-700 font-medium">Phone Number</label>
+    <input type="text" formControlName="phone"
+           class="w-full border rounded px-3 py-2 focus:ring focus:ring-blue-300" />
+    <div *ngIf="leadForm.get('phone')?.invalid && leadForm.get('phone')?.touched"
+         class="text-red-500 text-sm">
+      Phone number must be 10 digits.
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label class="block text-gray-700 font-medium">Email</label>
+    <input type="email" formControlName="email"
+           class="w-full border rounded px-3 py-2 focus:ring focus:ring-blue-300" />
+    <div *ngIf="leadForm.get('email')?.invalid && leadForm.get('email')?.touched"
+         class="text-red-500 text-sm">
+      Enter a valid email address.
+    </div>
+  </div>
+
+  <!-- Location -->
+  <div>
+    <label class="block text-gray-700 font-medium">Location/City</label>
+    <input type="text" formControlName="location"
+           class="w-full border rounded px-3 py-2 focus:ring focus:ring-blue-300" />
+    <div *ngIf="leadForm.get('location')?.invalid && leadForm.get('location')?.touched"
+         class="text-red-500 text-sm">
+      Location is required.
+    </div>
+  </div>
+
+  <!-- Property Type -->
+  <div>
+    <label class="block text-gray-700 font-medium">Property Type</label>
+    <select formControlName="propertyType"
+            class="w-full border rounded px-3 py-2 focus:ring focus:ring-blue-300">
+      <option value="">Select type</option>
+      <option value="Residential">Residential</option>
+      <option value="Commercial">Commercial</option>
+      <option value="Industrial">Industrial</option>
+    </select>
+    <div *ngIf="leadForm.get('propertyType')?.invalid && leadForm.get('propertyType')?.touched"
+         class="text-red-500 text-sm">
+      Property type is required.
+    </div>
+  </div>
+
+  <!-- System Size -->
+  <div>
+    <label class="block text-gray-700 font-medium">Estimated System Size (kW)</label>
+    <input type="number" formControlName="systemSizeKw"
+           class="w-full border rounded px-3 py-2 focus:ring focus:ring-blue-300" />
+    <div *ngIf="leadForm.get('systemSizeKw')?.invalid && leadForm.get('systemSizeKw')?.touched"
+         class="text-red-500 text-sm">
+      System size must be between 1 and 100 kW.
+    </div>
+  </div>
+
+  <!-- Source -->
+  <div>
+    <label class="block text-gray-700 font-medium">Source</label>
+    <select formControlName="source"
+            class="w-full border rounded px-3 py-2 focus:ring focus:ring-blue-300">
+      <option value="">Select source</option>
+      <option value="Website">Website</option>
+      <option value="Referral">Referral</option>
+      <option value="Walk-in">Walk-in</option>
+      <option value="Social Media">Social Media</option>
+    </select>
+    <div *ngIf="leadForm.get('source')?.invalid && leadForm.get('source')?.touched"
+         class="text-red-500 text-sm">
+      Source is required.
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="leadForm.invalid"
+          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50">
+    Submit Lead
+  </button>
+</form>

@@ -1,0 +1,62 @@
+<div class="max-w-5xl mx-auto p-6 space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white shadow rounded p-4 text-center">
+      <h2 class="text-gray-600 font-medium">Total Leads</h2>
+      <p class="text-3xl font-bold text-blue-600">{{ totalLeads }}</p>
+    </div>
+    <div class="bg-white shadow rounded p-4 text-center">
+      <h2 class="text-gray-600 font-medium">Conversion Rate</h2>
+      <p class="text-3xl font-bold text-green-600">{{ conversionRate }}%</p>
+    </div>
+    <div class="bg-white shadow rounded p-4 text-center">
+      <h2 class="text-gray-600 font-medium">Recent Leads</h2>
+      <p class="text-lg text-gray-700">Showing last 5</p>
+    </div>
+  </div>
+
+  <!-- Lead Count by Status -->
+  <div class="bg-white shadow rounded p-6">
+    <h2 class="text-xl font-semibold mb-4">Lead Count by Status</h2>
+    <ul class="space-y-2">
+      <li *ngFor="let status of statusCounts" class="flex justify-between">
+        <span class="text-gray-700">{{ status.name }}</span>
+        <span class="font-bold">{{ status.count }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Recent Leads Table -->
+  <div class="bg-white shadow rounded p-6">
+    <h2 class="text-xl font-semibold mb-4">Recent Leads</h2>
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="p-2 text-left">Name</th>
+          <th class="p-2 text-left">Email</th>
+          <th class="p-2 text-left">Status</th>
+          <th class="p-2 text-left">Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lead of recentLeads" class="border-b">
+          <td class="p-2">{{ lead.fullName }}</td>
+          <td class="p-2">{{ lead.email }}</td>
+          <td class="p-2">
+            <span class="px-2 py-1 rounded text-white"
+                  [ngClass]="{
+                    'bg-blue-500': lead.status === 'New Lead',
+                    'bg-yellow-500': lead.status === 'Contacted',
+                    'bg-purple-500': lead.status === 'Site Visit Scheduled',
+                    'bg-orange-500': lead.status === 'Proposal Sent',
+                    'bg-green-600': lead.status === 'Won',
+                    'bg-red-600': lead.status === 'Lost'
+                  }">
+              {{ lead.status }}
+            </span>
+          </td>
+          <td class="p-2">{{ lead.createdAt | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
